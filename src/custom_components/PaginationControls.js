@@ -21,13 +21,17 @@ export default class paginationControls extends React.Component{
             <PaginationButtons currentPage={this.props.currentPage} pageCount={this.props.pageCount}
                                navigate={this.props.navigateToPage}/>
         </div>
-        <div className='form-inline justify-content-center'>
-            <select className='form-control' onChange={this.handlePageSizeChange} value={this.props.pageSize || this.pageSizes[0]}>
-                {this.pageSizes.map(s=> <option value={s} key={s}>{s} per page</option>)}
-            </select>
-            <select className='form-control' onChange={this.handleSortPropertyChange} value={this.props.sortKey || this.sortKeys[0]}>
-                {this.sortKeys.map(k=> <option value={k.toLowerCase()} key={k}>Sort By {k}</option>)}
-            </select>
+        <div className='row justify-content-center g-2'>
+            <div className='col-2'>
+                <select className='form-control' onChange={this.handlePageSizeChange} value={this.props.pageSize || this.pageSizes[0]}>
+                    {this.pageSizes.map(s=> <option value={s} key={s}>{s} per page</option>)}
+                </select>
+            </div>
+            <div  className='col-2'>
+                <select className='form-control' onChange={this.handleSortPropertyChange} value={this.props.sortKey || this.sortKeys[0]}>
+                    {this.sortKeys.map(k=> <option value={k.toLowerCase()} key={k}>Sort By {k}</option>)}
+                </select>
+            </div>
         </div>
     </div>
 }

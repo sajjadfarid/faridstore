@@ -1,5 +1,5 @@
 import React from "react";
-import {loadData} from "../data/ActionCreators";
+import {loadData, placeOrder} from "../data/ActionCreators";
 import {connect} from "react-redux";
 import {Switch, Route, Redirect} from 'react-router-dom';
 import Shop from "./Shop";
@@ -7,13 +7,16 @@ import {DataTypes} from "../data/Types";
 import {addToCart, updateCartQuantity, removeFromCart, clearCart} from "../data/CartActionCreators";
 import CartDetails from "./CartDetails";
 import DataGetter from "../data/DataGetter";
+import Checkout from "./Checkout";
+import Thanks from "./Thanks";
 
 const mapStateToProps = (dataStore) => ({
     ...dataStore
 });
 
 const mapDispatchToProps = {
-    loadData, addToCart, updateCartQuantity, removeFromCart, clearCart
+    loadData, addToCart, updateCartQuantity, removeFromCart, clearCart,
+    placeOrder
 };
 
 //const filterProducts = (products = [], category)=> (!category || category==='All')
@@ -28,6 +31,8 @@ const ShopConnector = connect(mapStateToProps, mapDispatchToProps)(class extends
                 <Shop {...this.props} {...routeProps} />
             </DataGetter> }/>
         <Route path='/shop/cart' render={(routeProps)=> <CartDetails {...this.props} {...routeProps} />}/>
+        <Route path='/shop/checkout' render={routeProps => <Checkout {...this.props} {...routeProps} /> }/>
+        <Route path='/shop/thanks' render={routeProps=> <Thanks {...this.props} {...routeProps} /> } />
         <Redirect to='/shop/products/all/1' />
     </Switch>
 
